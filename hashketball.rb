@@ -105,11 +105,10 @@ end
 
 def num_points_scored(name_of_player)
   game_hash.each do |location, keys|
-    players = keys[:players]
-    players.each do |player|
-      player_name = player[:player_name]
-      points = player[:points]
-      return points if player_name == name_of_player
+    players = keys[:players] 
+    players.each do |player_stats|
+      player_name = player_stats[:player_name] #DRY this code! Create method to get player_name
+      return player_stats[:points] if player_name == name_of_player
     end
   end
 end
@@ -117,10 +116,9 @@ end
 def shoe_size(name_of_player)
    game_hash.each do |location, keys|
      players = keys[:players]
-     players.each do |player|
-       player_name = player[:player_name]
-       shoe = player[:shoe]
-       return shoe if player_name == name_of_player
+     players.each do |player_stats|
+       player_name = player_stats[:player_name] #DRY
+       return player_stats[:shoe] if player_name == name_of_player
      end
    end
  end
@@ -128,8 +126,7 @@ def shoe_size(name_of_player)
  def team_colors(name_of_team)
    game_hash.each do |location, keys|
      team_name = keys[:team_name]
-     colors = keys[:colors]
-     return colors if team_name == name_of_team
+     return keys[:colors] if team_name == name_of_team
    end
  end
  
@@ -141,10 +138,10 @@ def shoe_size(name_of_player)
  
  def player_numbers(team_name)
    game_hash.each do |location, keys|
-     name = keys[:team_name]
-     players = keys[:players]
-     playerNumbers = players.map { |player| player[:number] }
-     return playerNumbers if name == team_name
+     tname = keys[:team_name] #new variable to extract team name
+     players = keys[:players] #new variable to extract array of player hashes
+     player_numbers = players.map { |player| player[:number] } #enumerate through array of players and return array of player numbers
+     return player_numbers if tname == team_name
      end
    end
 
@@ -152,25 +149,26 @@ def shoe_size(name_of_player)
  def player_stats(name_of_player)
    game_hash.each do |location, keys|
      players = keys[:players]
-     players.each do |player|
-     player_name = player[:player_name]
+     players.each do |player_stats| 
+     player_name = player_stats[:player_name] #DRY 
        if player_name == name_of_player
-         return player.delete_if { |stat, value| [:player_name].include?(stat)}
+         return player_stats.delete_if { |stat, value| [:player_name].include?(stat)}
+        #delete_if enumerates through hash, deleting anything that meets these conditions (deletes :player_name key/value pair), and returns new hash
        end
      end
    end
  end
  
  def big_shoe_rebounds
-   biggest = 0
+   biggest_shoe = 0
    rebounds = 0
    game_hash.each do |location, keys|
-     players = keys[:players]
-    players.each do |player|
-       size = player[:shoe]
-       if size > biggest
-         biggest = size
-         rebounds = player[:rebounds]
+     players_array = keys[:players]  #players = the array of player hashes
+    players_array.each do |player_stats_hash|
+       shoe_size = player_stats_hash[:shoe] 
+       if shoe_size > biggest_shoe  #once iteration gets to largest size, biggest_shoe is at max and nothing else will pass
+         biggest_shoe = shoe_size
+         rebounds = player_stats_hash[:rebounds] 
        end
      end
    end
