@@ -163,10 +163,10 @@ def shoe_size(name_of_player)
    biggest_shoe = 0
    rebounds = 0
    game_hash.each do |location, keys|
-     players_array = keys[:players] #players = the array of player hashes
+     players_array = keys[:players]  #players = the array of player hashes
     players_array.each do |player_stats_hash|
-       shoe_size = player_stats_hash[:shoe] #size will be equal to
-       if shoe_size > biggest_shoe 
+       shoe_size = player_stats_hash[:shoe] 
+       if shoe_size > biggest_shoe  #once shoe_size is at max, nothing else will pass
          biggest_shoe = shoe_size
          rebounds = player_stats_hash[:rebounds]
        end
