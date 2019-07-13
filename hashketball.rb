@@ -165,38 +165,9 @@ def shoe_size(name_of_player)
    game_hash.each do |location, keys|
      players_array = keys[:players] #players = the array of player hashes
     players_array.each do |player_stats_hash|
-       size = player_stats_hash[:shoe]
-       
-        # Example of a player_stats_hash:
-        #       { player_name: 'Alan Anderson',
-        #        number: 0,
-        #        shoe: 16,
-        #        points: 22,
-        #        rebounds: 12,
-        #        assists: 12,
-        #        steals: 3,
-        #        blocks: 1,
-        #        slam_dunks: 1 }
-       
-       # Home
-       # size [5, 3, 2, 6]
-       # rebounds: [12, 5, 10, 2]
-       
-       # Away
-       # size [8, 2, 4, 6]
-       # rebounds [9, 25, 2, 6]
-       
-       # if 5 > 0
-       # biggest_shoe will equal 5 
-       
-       # if 3 > 5 <-- won't go into if statement
-       
-       # if 2 > 5 <--- won't go in
-       
-       # if 6 > 5
-       # biggest_shoe will equal 6
-       if size > biggest_shoe 
-         biggest_shoe = size
+       shoe_size = player_stats_hash[:shoe] #size will be equal to
+       if shoe_size > biggest_shoe 
+         biggest_shoe = shoe_size
          rebounds = player_stats_hash[:rebounds]
        end
      end
