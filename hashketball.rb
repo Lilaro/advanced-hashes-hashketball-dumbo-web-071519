@@ -167,11 +167,24 @@ def shoe_size(name_of_player)
     players_array.each do |player_stats_hash|
        size = player_stats_hash[:shoe]
        
+        # Example of a player_stats_hash:
+        #       { player_name: 'Alan Anderson',
+        #        number: 0,
+        #        shoe: 16,
+        #        points: 22,
+        #        rebounds: 12,
+        #        assists: 12,
+        #        steals: 3,
+        #        blocks: 1,
+        #        slam_dunks: 1 }
+       
        # Home
-       # [5, 3, 2, 6]
+       # size [5, 3, 2, 6]
+       # rebounds: [12, 5, 10, 2]
        
        # Away
-       # [8, 2, 4, 6]
+       # size [8, 2, 4, 6]
+       # rebounds [9, 25, 2, 6]
        
        # if 5 > 0
        # biggest_shoe will equal 5 
