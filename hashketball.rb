@@ -168,7 +168,7 @@ def shoe_size(name_of_player)
        shoe_size = player_stats_hash[:shoe] 
        if shoe_size > biggest_shoe  #once iteration gets to largest size, biggest_shoe is at max and nothing else will pass
          biggest_shoe = shoe_size
-         rebounds = player_stats_hash[:rebounds]
+         rebounds = player_stats_hash[:rebounds] 
        end
      end
    end
